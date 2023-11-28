@@ -22,7 +22,7 @@ int main() {
 	printf("Digite o tamanho da matriz A(ex: 3 3): ");
 	scanf("%d %d", &linhasA, &colunasA);
 	
-    int matrizA[linhasA][colunasA], i, j, escolha_usuario;
+    int matrizA[linhasA][colunasA], i, j, k, escolha_usuario, soma_produto;
 	
     // Loop para inserir os elementos da matriz A
     for (i = 0; i < linhasA; i++) {
@@ -118,7 +118,34 @@ int main() {
 		    
 			break;
 		case 3:
-			printf("Multiplicação ");
+			if(colunasA == linhasB){
+			
+				printf("Multiplicação\n");
+				
+				for(i = 0; i < linhasA; i++){
+					for(j = 0; i < colunasB; i++){
+						matrizresultado[i][j] = 0;
+						for(k = 0; k < linhasB; k++){
+							soma_produto += matrizA[i][k] * matrizB[k][j];
+						}
+						matrizresultado[i][j] = soma_produto;
+						soma_produto = 0;
+					}
+				}
+				
+				printf("Imprimindo a matriz resultado da multiplicação\n");
+			    for (i = 0; i < linhasB; i++) {
+			        for (j = 0; j < colunasB; j++) {
+			            printf("%d\t", matrizresultado[i][j]);
+			        }
+			        printf("\n");
+			    }
+			    
+			    printf("\n");
+			}else{
+				printf("Não é possível fazer multiplicação de matrizes com a quantidade de valores da coluna A diferentes da linha B\n");
+			}
+			break;
 		case 4:
 			printf("Matriz Transposta de A:\n");
 			
