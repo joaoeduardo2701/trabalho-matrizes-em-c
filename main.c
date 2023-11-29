@@ -9,7 +9,35 @@ void menu(){
 	printf("[ 4 ] Matriz Transposta\n");
 	printf("-> ");
 }
+/*
+int **AlocaMatriz(int m, int n){
+	int **M;
+	int i;
+	
+	M = (int **)malloc(sizeof(int *)*m);
+	
+	if(M == NULL){
+		printf("Memória insuficiente!\n");
+		exit(1);
+	}
+	
+	for(i = 0;i < m; i++){
+		M[i] = (int *)malloc(sizeof(int)*n);
+		if(M[i] == NULL){
+			printf("Memoria insuficiente\n");
+			exit(1);
+		}
+	}
+	return M;
+}
 
+void LiberaMatriz(int **M, int m){
+  	int i;
+  	for(i = 0; i < m; i++)
+    	free(M[i]);
+  	free(M);
+}
+*/
 int main() {
 	setlocale(LC_ALL, "Portuguese"); // Mudando para o idioma português
 	
@@ -73,6 +101,7 @@ int main() {
 	
 	scanf("%d", &escolha_usuario);
 	
+	int matriz_res[colunasA][linhasB];
 	switch(escolha_usuario){
 		case 1:
 			if(linhasA == colunasA && linhasB == colunasB){
@@ -117,26 +146,23 @@ int main() {
 			}
 		    
 			break;
-		case 3:
-			if(colunasA == linhasB){
+		case 3: // Multiplicação
 			
-				printf("Multiplicação\n");
-				
+			
+			if(colunasA == linhasB){
 				for(i = 0; i < linhasA; i++){
 					for(j = 0; i < colunasB; i++){
-						matrizresultado[i][j] = 0;
 						for(k = 0; k < linhasB; k++){
-							soma_produto += matrizA[i][k] * matrizB[k][j];
+							matriz_res[i][j] += matrizA[i][k] * matrizB[k][j];
 						}
-						matrizresultado[i][j] = soma_produto;
-						soma_produto = 0;
+						
 					}
 				}
 				
 				printf("Imprimindo a matriz resultado da multiplicação\n");
-			    for (i = 0; i < linhasB; i++) {
+			    for (i = 0; i < linhasA; i++) {
 			        for (j = 0; j < colunasB; j++) {
-			            printf("%d\t", matrizresultado[i][j]);
+			            printf("%d\t", matriz_res[i][j]);
 			        }
 			        printf("\n");
 			    }
@@ -145,6 +171,7 @@ int main() {
 			}else{
 				printf("Não é possível fazer multiplicação de matrizes com a quantidade de valores da coluna A diferentes da linha B\n");
 			}
+			
 			break;
 		case 4:
 			printf("Matriz Transposta de A:\n");
