@@ -5,39 +5,11 @@ void menu(){
 	printf("Escolha a operação que deseja efetuar em sua matriz: \n");
 	printf("[ 1 ] Adição\n");
 	printf("[ 2 ] Subtração\n");
-	printf("[ 3 ] Multiplicação\n");
+	printf("[ 3 ] Multiplicação de matrizes 2x3 por 3x2\n");
 	printf("[ 4 ] Matriz Transposta\n");
 	printf("-> ");
 }
-/*
-int **AlocaMatriz(int m, int n){
-	int **M;
-	int i;
-	
-	M = (int **)malloc(sizeof(int *)*m);
-	
-	if(M == NULL){
-		printf("Memória insuficiente!\n");
-		exit(1);
-	}
-	
-	for(i = 0;i < m; i++){
-		M[i] = (int *)malloc(sizeof(int)*n);
-		if(M[i] == NULL){
-			printf("Memoria insuficiente\n");
-			exit(1);
-		}
-	}
-	return M;
-}
 
-void LiberaMatriz(int **M, int m){
-  	int i;
-  	for(i = 0; i < m; i++)
-    	free(M[i]);
-  	free(M);
-}
-*/
 int main() {
 	setlocale(LC_ALL, "Portuguese"); // Mudando para o idioma português
 	
@@ -101,9 +73,10 @@ int main() {
 	
 	scanf("%d", &escolha_usuario);
 	
-	int matriz_res[colunasA][linhasB];
+	int matriz_res[linhasA][colunasB];
+	
 	switch(escolha_usuario){
-		case 1:
+		case 1: // Adição
 			if(linhasA == colunasA && linhasB == colunasB){
 				printf("A soma das matrizes A e B é:\n");
 			
@@ -126,7 +99,7 @@ int main() {
 			
 		    
 			break;
-		case 2:
+		case 2: // Subtração
 			if(linhasA == colunasA && linhasB == colunasB){
 				printf("A subração das matrizes A e B é:\n");
 				
@@ -147,33 +120,40 @@ int main() {
 		    
 			break;
 		case 3: // Multiplicação
-			
-			
 			if(colunasA == linhasB){
-				for(i = 0; i < linhasA; i++){
-					for(j = 0; i < colunasB; i++){
-						for(k = 0; k < linhasB; k++){
+				//atribuindo valores para matriz resultado
+				
+				for (i = 0; i < linhasA; i++) {
+			        for (j = 0; j < colunasB; j++) {
+			            matriz_res[i][j] = 0;
+			        }
+			    }
+				
+				for(i = 0; i < colunasA; i++){
+					for(j = 0; j < linhasB; j++){
+						for(k = 0; k < 3; k++){
 							matriz_res[i][j] += matrizA[i][k] * matrizB[k][j];
 						}
-						
 					}
 				}
 				
 				printf("Imprimindo a matriz resultado da multiplicação\n");
+				
+				// imprimindo matriz resultado
 			    for (i = 0; i < linhasA; i++) {
 			        for (j = 0; j < colunasB; j++) {
-			            printf("%d\t", matriz_res[i][j]);
+			            printf("%2d\t", matriz_res[i][j]);
 			        }
 			        printf("\n");
 			    }
 			    
 			    printf("\n");
 			}else{
-				printf("Não é possível fazer multiplicação de matrizes com a quantidade de valores da coluna A diferentes da linha B\n");
+				printf("O programa calcula apenas a multiplicação de matrizes 2x3 por 3x2\n");
 			}
 			
 			break;
-		case 4:
+		case 4: // Transposta
 			printf("Matriz Transposta de A:\n");
 			
 			for (i = 0; i < linhasA; i++) {
