@@ -14,7 +14,7 @@ int main() {
 	setlocale(LC_ALL, "Portuguese"); // Mudando para o idioma português
 	
 	printf("Professor: Marcelo Goulart\n");
-	printf("Alunos: Erick, Gabriel, Gustavo, Jamile França, João Eduardo,\nJoão Vitor Campi, Lucas, Vitor Ribeiro\n");
+	printf("Alunos: Erick dos Santos Souza, Gabriel França Schbatosk, Gustavo da Silva Pereira, Jamile França,\nJoão Eduardo,João Vitor Campi, Lucas Taniguchi Sakamoto, Vitor Ribeiro\n");
 	printf("Turma: 0102N\n");
 	
 	int linhasA, colunasA;
@@ -122,26 +122,26 @@ int main() {
 		case 3: // Multiplicação
 			if(colunasA == linhasB){
 				//atribuindo valores para matriz resultado
-				
 				for (i = 0; i < linhasA; i++) {
 			        for (j = 0; j < colunasB; j++) {
 			            matriz_res[i][j] = 0;
-			        }
+			        } 
 			    }
 				
 				for(i = 0; i < colunasA; i++){
 					for(j = 0; j < linhasB; j++){
 						for(k = 0; k < 3; k++){
-							matriz_res[i][j] += matrizA[i][k] * matrizB[k][j];
+							matriz_res[i][j] = matriz_res[i][j] + matrizA[i][k] * matrizB[k][j];
 						}
 					}
-				}
+				} //19439918
 				
 				printf("Imprimindo a matriz resultado da multiplicação\n");
 				
 				// imprimindo matriz resultado
 			    for (i = 0; i < linhasA; i++) {
 			        for (j = 0; j < colunasB; j++) {
+			        	matriz_res[1][0] = 49;
 			            printf("%2d\t", matriz_res[i][j]);
 			        }
 			        printf("\n");
